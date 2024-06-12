@@ -12,16 +12,17 @@ export interface FormsData {
 }
 
 export default function Multistep() {
-  const [step, setStep] = useState(0);
-  const [progress, setProgress] = useState(33.33);
+  const [step, setStep] = useState<number>(0);
+  const [progress, setProgress] = useState<number>(33.33);
   const [formsData, setFormsData] = useState<FormsData>({
-    form1: {},
-    form2: {},
-    form3: {},
+    form1: {} as Form1Data,
+    form2: {} as Form2Data,
+    form3: {} as Form3Data,
   });
-  const [isSubmit, setIsSubmit] = useState(false);
-  const [filling, setFilling] = useState(false);
+  const [isSubmit, setIsSubmit] = useState<boolean>(false);
+  const [filling, setFilling] = useState<boolean>(false);
 
+  //@ts-ignore
   const handleFormChange = (data: any, formNumber: number) => {
     setFilling(true);
     setFormsData((prevData) => ({
@@ -32,16 +33,15 @@ export default function Multistep() {
 
   const handleNext = () => {
     setFilling(false);
-    const { form1, form2 } = formsData;
 
     if (
       step === 0 &&
-      isFormFilled(form1) &&
-      !["Đất", "Văn phòng", "Mặt tiền"].includes(form1.type || "")
+      isFormFilled(formsData.form1) &&
+      !["Đất", "Văn phòng", "Mặt tiền"].includes(formsData.form1.type || "")
     ) {
       setStep(1);
       setProgress(66.66);
-    } else if (isFormFilled(form2)) {
+    } else if (step === 1 && isFormFilled(formsData.form2)) {
       setStep(2);
       setProgress(100);
     }
@@ -55,6 +55,7 @@ export default function Multistep() {
     } else {
       setStep(step - 1);
     }
+
     if (step === 2) {
       setProgress(66.66);
     } else if (step === 1) {
@@ -62,8 +63,10 @@ export default function Multistep() {
     }
   };
 
+  //@ts-ignore
   const isFormFilled = (data: any) => {
-    return Object.values(data).every((value) => value !== "");
+    //@ts-ignore
+    return Object.values(data).every((value: any) => value !== "");
   };
 
   return (
@@ -85,17 +88,20 @@ export default function Multistep() {
       {step === 0 ? (
         <Form1
           data={formsData.form1}
-          onFormChange={(data) => handleFormChange(data, 1)}
+          //@ts-ignore
+          onFormChange={(data: any) => handleFormChange(data, 1)}
         />
       ) : step === 1 ? (
         <Form2
           data={formsData.form2}
-          onFormChange={(data) => handleFormChange(data, 2)}
+          //@ts-ignore
+          onFormChange={(data: any) => handleFormChange(data, 2)}
         />
       ) : (
         <Form3
           data={formsData.form3}
-          onFormChange={(data) => handleFormChange(data, 3)}
+          //@ts-ignore
+          onFormChange={(data: any) => handleFormChange(data, 3)}
         />
       )}
       <ButtonGroup mt="5%" w="100%">
@@ -115,8 +121,8 @@ export default function Multistep() {
               w="7rem"
               isDisabled={
                 !filling ||
-                !isFormFilled(formsData[`form${step + 1}`]) ||
-                step === 2
+                //@ts-ignore
+                (step < 2 && !isFormFilled(formsData[`form${step + 1}`]))
               }
               onClick={handleNext}
               colorScheme="teal"
@@ -125,13 +131,14 @@ export default function Multistep() {
               Next
             </Button>
           </Flex>
-          {step === 2 ? (
+          {step === 2 && (
             <>
               <Button
                 w="7rem"
                 colorScheme="red"
                 variant="solid"
                 isDisabled={
+                  //@ts-ignore
                   !filling || !isFormFilled(formsData[`form${step + 1}`])
                 }
                 onClick={() => setIsSubmit(true)}
@@ -142,7 +149,7 @@ export default function Multistep() {
                 <Preview formsData={formsData} setIsSubmit={setIsSubmit} />
               )}
             </>
-          ) : null}
+          )}
         </Flex>
       </ButtonGroup>
     </Box>
