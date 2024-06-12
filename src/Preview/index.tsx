@@ -46,7 +46,7 @@ export default function Preview({ formsData, setIsSubmit }: Props) {
   return (
     <>
       <Modal
-        closeOnOverlayClick={false}
+        closeOnOverlayClick={true}
         isOpen={isOpen && !resultModalOpen}
         onClose={onClose}
       >
@@ -85,8 +85,8 @@ export default function Preview({ formsData, setIsSubmit }: Props) {
               colorScheme="blue"
               mr={3}
               onClick={() => {
-                handleSendRequest(500);
-                setMaxtok(500);
+                handleSendRequest(400);
+                setMaxtok(400);
               }}
             >
               Facebook
@@ -121,6 +121,14 @@ export default function Preview({ formsData, setIsSubmit }: Props) {
           <ModalFooter>
             <Button colorScheme="blue" mr={3} onClick={handleGenerateAgain}>
               Generate lại
+            </Button>
+            <Button
+              onClick={() => {
+                setIsSubmit(false);
+                onClose();
+              }}
+            >
+              Quay lại
             </Button>
           </ModalFooter>
         </ModalContent>
