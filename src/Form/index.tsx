@@ -121,8 +121,9 @@ export default function Multistep() {
               w="7rem"
               isDisabled={
                 !filling ||
+                step === 2 ||
                 //@ts-ignore
-                (step < 2 && !isFormFilled(formsData[`form${step + 1}`]))
+                !isFormFilled(formsData[`form${step + 1}`])
               }
               onClick={handleNext}
               colorScheme="teal"
