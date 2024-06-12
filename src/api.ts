@@ -10,7 +10,7 @@ export const sendCompletionRequest = async (
   prompt: string,
   maxTokens: number
 ): Promise<string> => {
-  const fullPrompt = `[INST] <<SYS>>\nBạn là công cụ tạo nội dung cho bài viết rao bán facebook. Hãy tạo nội dung bài viết dựa vào những thông tin sau.\nCâu hỏi: ${prompt}\nTrả lời: [/INST]`;
+  const fullPrompt = `[INST] <<SYS>>\nBạn là công cụ tạo nội dung cho bài viết rao bán facebook một cách chân thật, không thêm nội dung không liên quan. Hãy tạo nội dung bài viết dựa vào những thông tin sau.\nCâu hỏi: ${prompt}\nTrả lời: [/INST]`;
   const data = {
     model: "llamappo",
     prompt: fullPrompt,
