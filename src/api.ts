@@ -6,6 +6,7 @@
  * @returns {Promise<string>} - A promise that resolves to the completion result.
  */
 
+const URL = "https://a9ee-175-121-92-105.ngrok-free.app/v1/completions";
 export const sendCompletionRequest = async (
   prompt: string,
   maxTokens: number,
@@ -21,16 +22,13 @@ export const sendCompletionRequest = async (
   };
 
   try {
-    const response = await fetch(
-      "https://c9f9-69-129-123-18.ngrok-free.app/v1/completions",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      }
-    );
+    const response = await fetch(URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -74,16 +72,13 @@ const sendImprovementRequest = async (
   };
 
   try {
-    const response = await fetch(
-      "https://c9f9-69-129-123-18.ngrok-free.app/v1/completions",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      }
-    );
+    const response = await fetch(URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
