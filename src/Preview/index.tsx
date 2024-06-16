@@ -28,8 +28,8 @@ export default function Preview({ formsData, setIsSubmit }: Props) {
     return `Loại: ${obj.form1.type}, Mô tả thêm: ${obj.form1.description}, Địa chỉ: ${obj.form1.location}, Diện tích: ${obj.form1.area}, Tiện ích xung quanh: ${obj.form1.amenities}, Giá: ${obj.form1.price}, Số tầng: ${obj.form2.floors}, Số phòng ngủ: ${obj.form2.bedrooms}, Số phòng tắm: ${obj.form2.bathrooms}, Thông tin liên hệ: ${obj.form3.name}, Số điện thoại: ${obj.form3.phoneNumber}`;
   };
 
-  const handleSendRequest = (maxTokens: number) => {
-    sendCompletionRequest(concatenateProperties(formsData), maxTokens)
+  const handleSendRequest = (maxTokens: number, platform: string) => {
+    sendCompletionRequest(concatenateProperties(formsData), maxTokens, platform)
       .then((result) => {
         setGeneratedText(result);
         setResultModalOpen(true);
@@ -85,8 +85,8 @@ export default function Preview({ formsData, setIsSubmit }: Props) {
               colorScheme="blue"
               mr={3}
               onClick={() => {
-                handleSendRequest(400);
-                setMaxtok(400);
+                handleSendRequest(800, "facebook");
+                setMaxtok(800);
               }}
             >
               Facebook
@@ -95,8 +95,8 @@ export default function Preview({ formsData, setIsSubmit }: Props) {
               colorScheme="teal"
               mr={3}
               onClick={() => {
-                handleSendRequest(150);
-                setMaxtok(150);
+                handleSendRequest(350, "tiktok");
+                setMaxtok(350);
               }}
             >
               Tiktok
