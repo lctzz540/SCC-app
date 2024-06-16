@@ -11,7 +11,7 @@ export const sendCompletionRequest = async (
   maxTokens: number,
   platform: string
 ): Promise<string> => {
-  const fullPrompt = `[INST] <<SYS>>\nBạn là công cụ tạo nội dung cho bài viết rao bán facebook một cách chân thật, không thêm nội dung không liên quan và đặc biệt nhẩt định phải có số điện thoại liên hệ. Hãy tạo nội dung bài viết dựa vào những thông tin sau.\nCâu hỏi: ${prompt}\nTrả lời: [/INST]`;
+  const fullPrompt = `[INST] <<SYS>>\nBạn là công cụ tạo nội dung cho bài viết rao bán facebook một cách chân thật, tuyệt đối không thêm nội dung không liên quan và đặc biệt nhẩt định phải có số điện thoại liên hệ. Hãy tạo nội dung bài viết dựa vào những thông tin sau.\nCâu hỏi: ${prompt}\nTrả lời: [/INST]`;
   const data = {
     model: "llamappo",
     prompt: fullPrompt,
@@ -68,7 +68,7 @@ const sendImprovementRequest = async (
   const data = {
     model: "llamappo",
     prompt: `[INST] <<SYS>>\nBạn là một trợ lý giúp cải thiện đoạn văn. Hãy cải thiện câu văn sau để hợp lý hơn và rõ ràng hơn nhưng phải sáng tạo và hay, tránh lặp từ:\n${text}\n[/INST]`,
-    max_tokens: platform === "facebook" ? 400 : 200,
+    max_tokens: platform === "facebook" ? 800 : 300,
     temperature: 0.9,
     top_p: 0.9,
   };

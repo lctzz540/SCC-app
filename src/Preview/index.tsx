@@ -85,8 +85,8 @@ export default function Preview({ formsData, setIsSubmit }: Props) {
               colorScheme="blue"
               mr={3}
               onClick={() => {
-                handleSendRequest(800, "facebook");
-                setMaxtok(800);
+                handleSendRequest(1200, "facebook");
+                setMaxtok(1200);
               }}
             >
               Facebook
@@ -95,8 +95,8 @@ export default function Preview({ formsData, setIsSubmit }: Props) {
               colorScheme="teal"
               mr={3}
               onClick={() => {
-                handleSendRequest(350, "tiktok");
-                setMaxtok(350);
+                handleSendRequest(600, "tiktok");
+                setMaxtok(600);
               }}
             >
               Tiktok
