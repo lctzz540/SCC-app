@@ -17,8 +17,8 @@ export const sendCompletionRequest = async (
     model: "llamappo",
     prompt: fullPrompt,
     max_tokens: maxTokens,
-    temperature: 1,
-    top_p: 0.9,
+    temperature: 0.8,
+    top_p: 0.8,
   };
 
   try {
