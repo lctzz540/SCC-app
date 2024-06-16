@@ -22,13 +22,15 @@ export default function Preview({ formsData, setIsSubmit }: Props) {
   const [resultModalOpen, setResultModalOpen] = useState(false);
   const [generatedText, setGeneratedText] = useState("");
   const [maxtok, setMaxtok] = useState<number>(0);
+  const [platform, setPlatform] = useState<string>("");
   useEffect(() => onOpen(), []);
 
   const concatenateProperties = (obj: FormsData): string => {
     return `Loại: ${obj.form1.type}, Mô tả thêm: ${obj.form1.description}, Địa chỉ: ${obj.form1.location}, Diện tích: ${obj.form1.area}, Tiện ích xung quanh: ${obj.form1.amenities}, Giá: ${obj.form1.price}, Số tầng: ${obj.form2.floors}, Số phòng ngủ: ${obj.form2.bedrooms}, Số phòng tắm: ${obj.form2.bathrooms}, Thông tin liên hệ: ${obj.form3.name}, Số điện thoại: ${obj.form3.phoneNumber}`;
   };
 
-  const handleSendRequest = (maxTokens: number, platform: string) => {
+  const handleSendRequest = (maxTokens: number, currentPlatform: string) => {
+    setPlatform(currentPlatform);
     sendCompletionRequest(concatenateProperties(formsData), maxTokens, platform)
       .then((result) => {
         setGeneratedText(result);
@@ -40,7 +42,7 @@ export default function Preview({ formsData, setIsSubmit }: Props) {
   };
 
   const handleGenerateAgain = () => {
-    handleSendRequest(maxtok);
+    handleSendRequest(maxtok, platform);
   };
 
   return (
