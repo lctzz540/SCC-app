@@ -75,7 +75,7 @@ const sendImprovementRequest = async (
 
   try {
     const response = await fetch(
-      "https://a9ee-175-121-92-105.ngrok-free.app/v1/completions",
+      "https://c9f9-69-129-123-18.ngrok-free.app/v1/completions",
       {
         method: "POST",
         headers: {
