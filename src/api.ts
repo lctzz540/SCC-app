@@ -66,7 +66,7 @@ const sendImprovementRequest = async (
   const data = {
     model: "llamappo",
     prompt: `[INST] <<SYS>>\nBạn là một trợ lý giúp cải thiện đoạn văn. Hãy cải thiện câu văn sau để hợp lý hơn và rõ ràng hơn nhưng phải sáng tạo và hay, tránh lặp từ:\n${text}\n[/INST]`,
-    max_tokens: platform === "facebook" ? 600 : 200,
+    max_tokens: platform === "facebook" ? 500 : 200,
     temperature: 0.9,
     top_p: 0.9,
   };
