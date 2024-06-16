@@ -63,6 +63,7 @@ const sendImprovementRequest = async (
   text: string,
   platform: string
 ): Promise<string> => {
+  return text;
   const data = {
     model: "llamappo",
     prompt: `[INST] <<SYS>>\nBạn là một trợ lý giúp cải thiện đoạn văn. Hãy cải thiện câu văn sau để hợp lý hơn và rõ ràng hơn nhưng phải sáng tạo và hay, tránh lặp từ:\n${text}\n[/INST]`,
