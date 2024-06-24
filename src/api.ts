@@ -6,7 +6,7 @@
  * @returns {Promise<string>} - A promise that resolves to the completion result.
  */
 
-const URL = "https://877e-116-102-175-9.ngrok-free.app/v1/completions";
+const URL = "https://lct.pagekite.me/v1/completions";
 export const sendCompletionRequest = async (
   prompt: string,
   maxTokens: number,
